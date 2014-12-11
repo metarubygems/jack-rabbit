@@ -1,0 +1,22 @@
+# cp nginx/default /etc/nginx/sites-available/default
+# ln -s /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
+
+# http://nginx.org/ja/docs/http/request_processing.html
+server {
+  listen 80 default_server;
+  server_name _;
+
+  access_log  /var/log/nginx/default_server_access.log ltsv;
+  error_log   /var/log/nginx/default_server_error.log info;
+
+  # Load Balance Health Check Ping path
+  location /favicon {
+    empty_gif;
+    access_log    off;
+    log_not_found off;
+  }
+
+  location / {
+    return 403;
+  }
+}
