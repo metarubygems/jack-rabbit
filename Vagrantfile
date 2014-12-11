@@ -44,7 +44,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   config.vm.provider 'virtualbox' do |provider, override|
     provider.customize ['modifyvm', :id, '--ostype', 'Ubuntu_64']
-    override.vm.hostname = "#{ENV['APP_ENV']}-vb#{ENV['HOSTNAME_SUFFIX']}.metarubygems.org"
+    override.vm.hostname = "#{ENV['APP_ENV']}-vb#{ENV['HOSTNAME_SUFFIX']}.jack-rabbit.metarubygems.org"
     # # Don't boot with headless mode
     # vb.gui = true
     #
