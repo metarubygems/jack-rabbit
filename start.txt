@@ -22,7 +22,9 @@ libxml2-dev \
 libxslt-dev \
 dstat \
 screen \
-nginx \
+nginx
+
+sudo apt-get -yq install \
 language-pack-en \
 language-pack-ja
 
