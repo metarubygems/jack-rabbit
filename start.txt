@@ -21,6 +21,7 @@ libyaml-dev \
 libxml2-dev \
 libxslt-dev \
 dstat \
+screen \
 nginx \
 language-pack-en \
 language-pack-ja
