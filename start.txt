@@ -46,4 +46,5 @@ mkdir -p /home/appuser/local
 ./xbuild/ruby-install 2.1.5 /home/appuser/local/ruby-2.1
 ./xbuild/node-install v0.10.33 /home/appuser/local/node-v0.10
 
-ENV PATH /home/appuser/local/node-v0.10/bin:/home/appuser/local/ruby-2.0/bin:$PATH
+echo "PATH=/home/appuser/local/node-v0.10/bin:/home/appuser/local/ruby-2.1/bin:$PATH" >> /home/appuser/.bashrc
+source /home/appuser/.bashrc
