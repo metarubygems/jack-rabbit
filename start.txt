@@ -1,9 +1,44 @@
 # sudo service sshd reload
 
 # firewall
-$ sudo ufw status
-$ sudo ufw default deny
-$ sudo ufw allow 22
-$ sudo ufw allow 80
-$ sudo ufw enable
-$ sudo ufw status
+sudo ufw status
+sudo ufw default deny
+sudo ufw allow 22
+sudo ufw allow 80
+sudo ufw enable
+sudo ufw status
+
+sudo apt-get -yq update && \
+sudo apt-get -yq install \
+bash \
+git \
+build-essential \
+curl \
+zlib1g-dev \
+libssl-dev \
+libreadline-dev \
+libyaml-dev \
+libxml2-dev \
+libxslt-dev \
+dstat \
+nginx \
+language-pack-en \
+language-pack-ja
+
+sudo update-locale LANG=en_US.UTF-8
+
+# Read nginx log for fluentd, directory permission
+sudo chmod o+rx /var/log/nginx
+
+# Application user
+adduser appuser
+"appuser ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers.d/app
+
+git clone https://github.com/tagomoris/xbuild /home/appuser/xbuild
+mkdir -p /home/appuser/local
+
+# Install app languages
+RUN xbuild/ruby-install 2.0.0-p576 /home/appuser/local/ruby-2.0
+RUN xbuild/node-install v0.10.31 /home/appuser/local/node-v0.10
+
+ENV PATH /home/appuser/local/node-v0.10/bin:/home/appuser/local/ruby-2.0/bin:$PATH
