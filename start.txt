@@ -34,11 +34,13 @@ sudo chmod o+rx /var/log/nginx
 adduser appuser
 "appuser ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers.d/app
 
+sudo su - appuser
+
 git clone https://github.com/tagomoris/xbuild /home/appuser/xbuild
 mkdir -p /home/appuser/local
 
 # Install app languages
-RUN xbuild/ruby-install 2.0.0-p576 /home/appuser/local/ruby-2.0
-RUN xbuild/node-install v0.10.31 /home/appuser/local/node-v0.10
+xbuild/ruby-install 2.0.0-p576 /home/appuser/local/ruby-2.0
+xbuild/node-install v0.10.31 /home/appuser/local/node-v0.10
 
 ENV PATH /home/appuser/local/node-v0.10/bin:/home/appuser/local/ruby-2.0/bin:$PATH
