@@ -48,7 +48,3 @@ mkdir -p /home/appuser/local
 
 echo "PATH=/home/appuser/local/node-v0.10/bin:/home/appuser/local/ruby-2.1/bin:$PATH" >> /home/appuser/.bashrc
 source /home/appuser/.bashrc
-
-sudo mkdir /apps
-sudo chown appuser:appuser /apps
-mkdir /apps/forest_wildcat
