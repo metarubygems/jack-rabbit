@@ -34,6 +34,16 @@ sudo update-locale LANG=en_US.UTF-8
 # Read nginx log for fluentd, directory permission
 sudo chmod o+rx /var/log/nginx
 
+# newrelic
+sudo sh -c "echo deb http://apt.newrelic.com/debian/ newrelic non-free >> /etc/apt/sources.list.d/newrelic.list"
+sudo sh -c "wget -O- https://download.newrelic.com/548C16BF.gpg | apt-key add -"
+sudo apt-get -yq update
+sudo apt-get -yq install newrelic-sysmond
+sudo nrsysmond-config --set license_key=#{ENV['NEW_RELIC_LICENSE_KEY']}
+sudo service newrelic-sysmond status
+sudo service newrelic-sysmond start
+sudo service newrelic-sysmond status
+
 # Application user
 sudo adduser appuser
 sudo sh -c 'echo "appuser ALL=(ALL:ALL) NOPASSWD:ALL" >> /etc/sudoers.d/app'
